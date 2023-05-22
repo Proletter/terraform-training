@@ -1,9 +1,23 @@
-provider "azurerm" {
-  version = "=1.35.0"
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>3.0.0"
+    }
+  }
 }
 
-# Create a resource group
+# Configure the Microsoft Azure Provider
+provider "azurerm" {
+  features {}
+
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
+  subscription_id = var.subscription_id
+}
+
 resource "azurerm_resource_group" "demo" {
-  name     = "demo"
+  name = "demo"
   location = var.location
 }
